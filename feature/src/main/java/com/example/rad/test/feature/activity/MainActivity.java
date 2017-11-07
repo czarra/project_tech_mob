@@ -2,22 +2,22 @@ package com.example.rad.test.feature.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
 
 import com.example.rad.test.feature.R;
-import com.example.rad.test.feature.fragments.CategoryFragment;
+import com.example.rad.test.feature.data.Articles;
+import com.example.rad.test.feature.fragments.ArticelsFragment;
+import com.example.rad.test.feature.fragments.SingleArticeleFragment;
 import com.example.rad.test.feature.fragments.StartFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ArticelsFragment.OnFragmentInteractionListener{
     ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,17 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         loadStartFragment();
-       // progressBar= (ProgressBar) findViewById(R.id.progressBar);
-        //progressBar.setVisibility(View.VISIBLE);
 
-       // FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        /*fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
     }
 
     @Override
@@ -74,23 +64,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadAboutFragment() {
-        loadFragment(CategoryFragment.newInstance());
+        loadFragment(ArticelsFragment.newInstance());
     }
     private void loadStartFragment() {
         loadFragment(StartFragment.newInstance());
+    }
+    private void loadSingleArticle(String id){
+        loadFragment(SingleArticeleFragment.newInstance(id));
     }
     private void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.content_main, fragment);
         transaction.commit();
        /* if(titleResourceId==R.string.menu_contact_label){
-            CategoryFragment fragmentcontact= (CategoryFragment)fragment;
+            ArticelsFragment fragmentcontact= (ArticelsFragment)fragment;
             fragmentcontact.addUs();
         }
 */
 
       //  toolbar_title.setText(getResources().getString(titleResourceId));
         //@mipmap/align_eft_3x
+    }
+
+    @Override
+    public void onFragmentInteraction(Articles articles) {
+        loadSingleArticle(articles.id);
     }
 }
 

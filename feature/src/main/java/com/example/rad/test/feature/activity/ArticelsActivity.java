@@ -15,7 +15,7 @@ import com.example.rad.test.feature.R;
  * Created by Rad on 2017-11-06.
  */
 
-public class CategoryActivity extends AppCompatActivity {
+public class ArticelsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
