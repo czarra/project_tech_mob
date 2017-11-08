@@ -10,9 +10,6 @@
         android:id="@+id/category"
         android:orderInCategory="100"
         android:title="@string/category" />
-    <item
-        android:id="@+id/brands"
-        android:orderInCategory="100"
-        android:title="@string/brands" />
+
 
 </menu>

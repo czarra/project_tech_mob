@@ -15,6 +15,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="117dp"
         android:text="STRONA STARTOWA"
+        android:textColor="@color/dark_blue"
         android:textSize="15pt" />
 
     <TextView
@@ -25,5 +26,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="132dp"
         android:textSize="12pt"
+        android:textColor="@color/dark_blue"
         android:text="Proszę korzystać do woli" />
 </RelativeLayout>

@@ -51,8 +51,8 @@ public class MyArticlesRecyclerViewAdapter extends RecyclerView.Adapter<MyArticl
        try {
            for (int i = 0; i < articles.get(position).url.length(); i++) {
                JSONObject articlesObject = articles.get(position).url.getJSONObject(i);
-               if( articlesObject.getString("thumbnailHdUrl")!=null && url_picture==null) {
-                   url_picture =  articlesObject.getString("thumbnailHdUrl");
+               if( articlesObject.getString("mediumHdUrl")!=null && url_picture==null) {
+                   url_picture =  articlesObject.getString("mediumHdUrl");
                }
            }
        }catch (Exception e){
@@ -67,7 +67,6 @@ public class MyArticlesRecyclerViewAdapter extends RecyclerView.Adapter<MyArticl
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("listiii", articles.get(position).toString());
                 if (null != listener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.

@@ -107,8 +107,10 @@ public class ArticelsFragment extends Fragment {
         List<Articles> list = new ArrayList<>();
         @Override
         protected List<Articles> doInBackground(String... urls) {
+            String url = "https://api.zalando.com/articles";
+            url += "?pageSize=100";
             try {
-                String jsonResponse = client.getURL("https://api.zalando.com/articles", String.class);
+                String jsonResponse = client.getURL(url, String.class);
 
                 JSONObject jsonObject = new JSONObject(jsonResponse);
                 JSONArray articles = jsonObject.getJSONArray("content");

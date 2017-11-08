@@ -15,7 +15,8 @@ public class Articles {
             return new Articles(jsonObject.getString("id"), jsonObject.getString("name"),
                     jsonObject.getString("shopUrl"), jsonObject.getJSONObject("media").getJSONArray("images"),
                     jsonObject.getString("color"), jsonObject.getString("season"),
-                    jsonObject.getString("seasonYear"),  jsonObject.getJSONObject( "brand").getString("logoLargeUrl"));
+                    jsonObject.getString("seasonYear"),  jsonObject.getJSONObject( "brand").getString("logoLargeUrl"),
+                    jsonObject.getJSONArray("units"));
         } catch (JSONException exp) {
 
         }
@@ -30,13 +31,14 @@ public class Articles {
     public final String season;
     public final String seasonYear;
     public final String logo;
+    public final JSONArray  units;
 
     public Articles() {
-        this(null,null,null,null,null,null,null,null);
+        this(null,null,null,null,null,null,null,null,null);
     }
 
 
-    private Articles(String id, String name, String shopUrl, JSONArray url, String color, String season, String seasonYear, String logo ) {
+    private Articles(String id, String name, String shopUrl, JSONArray url, String color, String season, String seasonYear, String logo,  JSONArray units ) {
         this.id = id;
         this.name = name;
         this.shopUrl = shopUrl;
@@ -45,6 +47,7 @@ public class Articles {
         this.season = season;
         this.seasonYear = seasonYear;
         this.logo = logo;
+        this.units = units;
     }
 
     @Override

@@ -13,11 +13,12 @@ import android.widget.ProgressBar;
 
 import com.example.rad.test.feature.R;
 import com.example.rad.test.feature.data.Articles;
+import com.example.rad.test.feature.data.Articles_picture_single;
 import com.example.rad.test.feature.fragments.ArticelsFragment;
 import com.example.rad.test.feature.fragments.SingleArticeleFragment;
 import com.example.rad.test.feature.fragments.StartFragment;
 
-public class MainActivity extends AppCompatActivity implements ArticelsFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements ArticelsFragment.OnFragmentInteractionListener,SingleArticeleFragment.OnFragmentInteractionListener{
     ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +47,7 @@ public class MainActivity extends AppCompatActivity implements ArticelsFragment.
         //noinspection SimplifiableIfStatement
         if (id == R.id.category) {
             //progressBar.setVisibility(View.VISIBLE);
-            loadAboutFragment();
-            return true;
-        }
-        if (id == R.id.brands) {
-            //progressBar.setVisibility(View.GONE);
-            loadStartFragment();
+            loadArticlesFragment();
             return true;
         }
         if (id == R.id.powitalna) {
@@ -63,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements ArticelsFragment.
         return super.onOptionsItemSelected(item);
     }
 
-    private void loadAboutFragment() {
+    private void loadArticlesFragment() {
         loadFragment(ArticelsFragment.newInstance());
     }
     private void loadStartFragment() {
@@ -76,19 +72,17 @@ public class MainActivity extends AppCompatActivity implements ArticelsFragment.
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.content_main, fragment);
         transaction.commit();
-       /* if(titleResourceId==R.string.menu_contact_label){
-            ArticelsFragment fragmentcontact= (ArticelsFragment)fragment;
-            fragmentcontact.addUs();
-        }
-*/
-
-      //  toolbar_title.setText(getResources().getString(titleResourceId));
-        //@mipmap/align_eft_3x
     }
 
     @Override
     public void onFragmentInteraction(Articles articles) {
+
         loadSingleArticle(articles.id);
+    }
+    @Override
+    public void onFragmentInteraction(Articles_picture_single articles) {
+
+        //loadSingleArticle(articles.id);
     }
 }
 

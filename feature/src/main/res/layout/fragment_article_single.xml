@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
@@ -15,14 +16,14 @@
             <RelativeLayout
                 android:id="@+id/relativeSpeaker"
                 android:layout_width="match_parent"
-                android:layout_height="100.5pt"
+                android:layout_height="wrap_content"
                 android:paddingEnd="7.5pt"
                 android:paddingStart="8pt">
 
                 <ImageView
-                    android:id="@+id/imageViewSpeakerDesc"
-                    android:layout_width="43pt"
-                    android:layout_height="43pt"
+                    android:id="@+id/imageSingleArticle"
+                    android:layout_width="80pt"
+                    android:layout_height="80pt"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15.5pt"
@@ -30,28 +31,32 @@
                     />
 
                 <TextView
-                    android:id="@+id/textFirstNameSpeaker"
+                    android:id="@+id/textNameArtcle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/imageViewSpeakerDesc"
+                    android:layout_below="@+id/imageSingleArticle"
+                    android:textColor="@color/dark_blue"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="8pt"
                     android:text="New Text"
                     android:textSize="8.5pt"
                     android:letterSpacing="0.05"
                     />
-
-                <TextView
-                    android:id="@+id/textFunctionCompanyName"
-                    android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/buttonShop"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/textFirstNameSpeaker"
+                    android:layout_below="@+id/textNameArtcle"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2.5pt"
-                    android:text="Function at Company Name"
+                    android:layout_marginRight="5pt"
+                    android:layout_marginLeft="5pt"
+                    android:text="Idź do sklepu"
+                    android:background="@drawable/round_red_button"
+                    android:textColor="@color/textColor"
                     android:letterSpacing="0.05"
-                    android:textSize="7pt"
-                    />
+                    android:textSize="7pt" />
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -63,39 +68,62 @@
                 android:layout_marginTop="10pt">
 
                 <TextView
-                    android:id="@+id/textDescriptionSpeaker"
+                    android:id="@+id/textPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="New Text2"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/dark_blue"
                     android:letterSpacing="0.05"
-                    android:textSize="7pt"
+                    android:paddingBottom="20dp"
+                    android:textSize="8pt"
                     />
-
-                <TextView
-                    android:id="@+id/textReadMoreSpeaker"
-                    android:layout_width="wrap_content"
+                <android.support.v7.widget.RecyclerView
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/listArticlesSize"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/textDescriptionSpeaker"
-                    android:layout_marginTop="10pt"
-                    android:textSize="7pt"
-                    android:letterSpacing="0.05"
-                    android:gravity="start"
+                    android:layout_below="@+id/textPrice"
+                    android:clipToPadding="false"
+                    android:paddingBottom="20dp"
+                    tools:listitem="@layout/fragment_article_size"
+                    />
+                <android.support.v7.widget.RecyclerView
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/listArticlesPicture"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/listArticlesSize"
+                    tools:listitem="@layout/fragment_article_picture"
                     />
 
             </RelativeLayout>
 
         </LinearLayout>
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <ProgressBar
-        android:id="@+id/progressBarShow"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="167dp" />
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progressBarShow"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="167dp" />
+
+        <ImageView
+            android:id="@+id/imageViewBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="31dp"
+            android:layout_marginTop="38dp"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+
+    </RelativeLayout>
 </FrameLayout>
