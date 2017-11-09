@@ -1,0 +1,56 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp"
+    android:background="@android:color/white"
+    >
+
+    <TextView
+        android:id="@+id/categoryNameGeneral"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6pt"
+        android:text="genaral"
+        android:textColor="@color/red_logo"
+        android:textSize="9pt"
+        />
+
+    <android.support.v7.widget.RecyclerView xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/listFilter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/categoryNameGeneral"
+        android:layout_marginTop="30dp"
+        android:splitMotionEvents="true"
+        tools:listitem="@layout/fragment_filter" />
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:layout_gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="60dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/categoryNameGeneral"
+        android:background="@color/form_font_color"
+        android:text="Cofnij"
+        android:textColor="@color/textColor" />
+
+    <Button
+        android:id="@+id/buttonProducts"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_below="@+id/categoryNameGeneral"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/round_red_button"
+        android:text="Dalej" />
+</RelativeLayout>

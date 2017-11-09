@@ -67,7 +67,7 @@ public class SingleArticeleFragment extends Fragment {
         final RecyclerView recyclerViewSize = (RecyclerView) view.findViewById(R.id.listArticlesSize);
         final Context context = view.getContext();
         final ProgressBar progressBar1 = (ProgressBar) view.findViewById(R.id.progressBarShow);
-        listener = (OnFragmentInteractionListener) context;
+      //  listener = (OnFragmentInteractionListener) context;
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false);
         GridLayoutManager gridLayoutManagerSize = new GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false);

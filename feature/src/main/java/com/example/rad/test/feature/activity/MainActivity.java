@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
@@ -52,7 +53,11 @@ public class MainActivity extends AppCompatActivity implements ArticelsFragment.
         }
         if (id == R.id.powitalna) {
             //progressBar.setVisibility(View.GONE);
-            loadStartFragment();
+            Intent mIntent = new Intent(MainActivity.this, ArticelsActivity.class);
+            mIntent.putExtra("category", "katalog");
+            startActivity(mIntent);
+           // finish();
+            //loadStartFragment();
             return true;
         }
 
@@ -65,9 +70,9 @@ public class MainActivity extends AppCompatActivity implements ArticelsFragment.
     private void loadStartFragment() {
         loadFragment(StartFragment.newInstance());
     }
-    private void loadSingleArticle(String id){
+  /*  private void loadSingleArticle(String id){
         loadFragment(SingleArticeleFragment.newInstance(id));
-    }
+    }*/
     private void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.content_main, fragment);
@@ -76,8 +81,9 @@ public class MainActivity extends AppCompatActivity implements ArticelsFragment.
 
     @Override
     public void onFragmentInteraction(Articles articles) {
-
-        loadSingleArticle(articles.id);
+        Intent mIntent = new Intent(MainActivity.this, ArticeleSingleActivity.class);
+        mIntent.putExtra("id", articles.id);
+        startActivity(mIntent);
     }
     @Override
     public void onFragmentInteraction(Articles_picture_single articles) {

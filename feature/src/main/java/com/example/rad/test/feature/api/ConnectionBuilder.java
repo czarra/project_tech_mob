@@ -65,7 +65,7 @@ class ConnectionBuilder {
         try {
             final HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
             connection.setRequestMethod(method);
-
+            connection.setRequestProperty("Accept-Language", "pl-PL");
             connection.connect();
             return connection;
         } catch (IOException e) {

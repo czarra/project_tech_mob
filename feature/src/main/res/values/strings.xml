@@ -4,5 +4,6 @@
     <string name="category">Produkty</string>
     <string name="brands">Brands</string>
     <string name="start">Powitalna</string>
-
+    <string name="filters">Filtry</string>
+    <string name="articles">Produkty</string>
 </resources>
