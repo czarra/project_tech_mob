@@ -86,7 +86,7 @@ public class CategoryFilterFragment extends Fragment {
         });
         listener = (OnFragmentInteractionListener) context;
         adapter = new MyCategorySingleRecyclerViewAdapter(new ArrayList<Category>(),listener);
-        RetrieveArticlesTask retrieveSpeakerTask = new RetrieveArticlesTask() {
+        RetrieveArticlesTask retrieveCategoryTask = new RetrieveArticlesTask() {
             @Override
             protected void onPreExecute() {
                 progressBar1.setVisibility(View.VISIBLE);
@@ -113,7 +113,7 @@ public class CategoryFilterFragment extends Fragment {
                 buttonProducts.setVisibility(View.VISIBLE);
             }
         };
-        retrieveSpeakerTask.execute();
+        retrieveCategoryTask.execute();
         recyclerView.setAdapter(adapter);
         return view;
     }

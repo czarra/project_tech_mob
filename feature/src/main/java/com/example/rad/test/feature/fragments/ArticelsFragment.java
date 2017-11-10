@@ -40,15 +40,21 @@ public class ArticelsFragment extends Fragment {
 
     private OnFragmentInteractionListener listener;
     private MyArticlesRecyclerViewAdapter adapter;
-    private RetrieveArticlesTask retrieveSpeakerTask;
+    private RetrieveArticlesTask retrieveArticleTask;
+    RecyclerView recyclerView;
     private String key;
     private EditText priceFrom;
     private EditText priceTo;
     private CheckBox sale;
+    private Button buttonBack;
+    private Button buttonNext;
     private String selectedSpinner;
     private Context context;
     private Button runFilter;
+    private ProgressBar progressBar1;
     private Boolean showToast = false;
+    private int page=1;
+    private int totalPages=0;
 
     public static ArticelsFragment newInstance(String key) {
         ArticelsFragment fragment = new ArticelsFragment();
@@ -62,15 +68,17 @@ public class ArticelsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_articles, container, false);
         context = view.getContext();
-        final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
+        recyclerView = (RecyclerView) view.findViewById(R.id.list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         sale = (CheckBox)  view.findViewById(R.id.CheckBoxButton);
         priceFrom = (EditText) view.findViewById(R.id.priceprice1);
         priceTo  = (EditText) view.findViewById(R.id.priceprice2);
         runFilter = (Button) view.findViewById(R.id.buttonFilter);
+        buttonNext = (Button) view.findViewById(R.id.buttonNext);
+        buttonBack = (Button) view.findViewById(R.id.buttonBack);
         layoutManager.setSmoothScrollbarEnabled(true);
         listener = (OnFragmentInteractionListener) context;
-        final ProgressBar progressBar1 = (ProgressBar) view.findViewById(R.id.progressBar1);
+        progressBar1 = (ProgressBar) view.findViewById(R.id.progressBar1);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
         Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
@@ -116,8 +124,8 @@ public class ArticelsFragment extends Fragment {
         List<String> categories = new ArrayList<String>();
         categories.add("");
         categories.add("Popularność");//popularity
-        categories.add("Cena malejąco");//pricedesc
-        categories.add("Cena rosnąco");//priceasc
+        categories.add("Cena rosnąco");//pricedesc
+        categories.add("Cena malejąco");//priceasc
         categories.add("Wyprzedaż");//sale
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context,R.layout.simple_spinner_item, categories);
@@ -130,11 +138,13 @@ public class ArticelsFragment extends Fragment {
         adapter = new MyArticlesRecyclerViewAdapter(new ArrayList<Articles>(), listener);
 
 
-        retrieveSpeakerTask = new RetrieveArticlesTask() {
+        retrieveArticleTask = new RetrieveArticlesTask() {
             @Override
             protected void onPreExecute() {
                 progressBar1.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.GONE);
+                buttonBack.setVisibility(View.GONE);
+                buttonNext.setVisibility(View.GONE);
             }
 
             @Override
@@ -146,44 +156,79 @@ public class ArticelsFragment extends Fragment {
                 adapter.notifyDataSetChanged();
                 progressBar1.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
+                if(totalPages>page){
+                    buttonNext.setVisibility(View.VISIBLE);
+                }
             }
         };
-        retrieveSpeakerTask.execute();
+        retrieveArticleTask.execute();
         recyclerView.setAdapter(adapter);
+
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  page--;
+                  retrieveArticleTask = forButtons();
+                  retrieveArticleTask.execute();
+              }
+          });
+        buttonNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                page++;
+                retrieveArticleTask = forButtons();
+                retrieveArticleTask.execute();
+            }
+        });
 
         runFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                retrieveSpeakerTask = new RetrieveArticlesTask() {
-                    @Override
-                    protected void onPreExecute() {
-                        progressBar1.setVisibility(View.VISIBLE);
-                        recyclerView.setVisibility(View.GONE);
-                    }
-
-                    @Override
-                    protected void onPostExecute(List<Articles> list) {
-                        adapter.articles.clear();
-                        for (int i = 0; i < list.size(); i++) {
-                            adapter.articles.add(list.get(i));
-                        }
-                        adapter.notifyDataSetChanged();
-                        progressBar1.setVisibility(View.GONE);
-                        recyclerView.setVisibility(View.VISIBLE);
-                        if (showToast){
-                            CharSequence text = "Proszę podać drugą kwotę!";
-                            int duration = Toast.LENGTH_SHORT;
-                            Toast toast = Toast.makeText(context, text, duration);
-                            toast.show();
-                            showToast = false;
-                        }
-                    }
-                };
-                retrieveSpeakerTask.execute();
+                page = 1;
+                retrieveArticleTask = forButtons();
+                retrieveArticleTask.execute();
             }
 
         });
+        recyclerView.setNestedScrollingEnabled(false);
         return view;
+    }
+
+    private RetrieveArticlesTask forButtons(){
+
+        return new RetrieveArticlesTask() {
+            @Override
+            protected void onPreExecute() {
+                progressBar1.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
+                buttonBack.setVisibility(View.GONE);
+                buttonNext.setVisibility(View.GONE);
+            }
+
+            @Override
+            protected void onPostExecute(List<Articles> list) {
+                adapter.articles.clear();
+                for (int i = 0; i < list.size(); i++) {
+                    adapter.articles.add(list.get(i));
+                }
+                adapter.notifyDataSetChanged();
+                progressBar1.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+                if(totalPages>page){
+                    buttonNext.setVisibility(View.VISIBLE);
+                }
+                if(page>1){
+                    buttonBack.setVisibility(View.VISIBLE);
+                }
+                if (showToast){
+                    CharSequence text = "Proszę podać drugą kwotę!";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    showToast = false;
+                }
+            }
+        };
     }
 
 
@@ -222,7 +267,7 @@ public class ArticelsFragment extends Fragment {
         @Override
         protected List<Articles> doInBackground(String... urls) {
             String url = "https://api.zalando.com/articles";
-            url += "?pageSize=100";
+            url += "?pageSize=50&page="+page;
             if(key != null && !key.trim().isEmpty()){
                 url += "&category="+key;
             }
@@ -245,11 +290,15 @@ public class ArticelsFragment extends Fragment {
                 Log.d("jsonResponse",jsonResponse);
                 JSONObject jsonObject = new JSONObject(jsonResponse);
                 JSONArray articles = jsonObject.getJSONArray("content");
+                Log.d("page",  jsonObject.getString("page"));
+                page =  stringToInt(jsonObject.getString("page"));
+                Log.d("size",  jsonObject.getString("size"));
+                totalPages =  stringToInt(jsonObject.getString("totalPages"));
+                Log.d("totalPages",  jsonObject.getString("totalPages"));
                 for (int i = 0; i < articles.length(); i++) {
                     JSONObject articlesObject = articles.getJSONObject(i);
                     Articles item = Articles.fromJsonObject(articlesObject);
                     if(item!=null) {
-                        Log.d("sriiir",item.toString());
                         list.add(item);
                     }
                 }
@@ -258,6 +307,15 @@ public class ArticelsFragment extends Fragment {
                 Log.e("Articles error",exp.getMessage());
             }
             return new ArrayList<>();
+        }
+
+        public int stringToInt(String text){
+            try {
+                return Integer.parseInt(text);
+            }
+            catch (NumberFormatException  e){
+                return 0;
+            }
         }
 
     }
