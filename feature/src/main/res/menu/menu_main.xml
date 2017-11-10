@@ -6,10 +6,7 @@
         android:id="@+id/powitalna"
         android:orderInCategory="100"
         android:title="@string/filters" />
-    <item
-        android:id="@+id/category"
-        android:orderInCategory="100"
-        android:title="@string/category" />
+
 
 
 </menu>

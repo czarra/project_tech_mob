@@ -6,11 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.rad.test.feature.R;
-import com.example.rad.test.feature.data.Articles_size_single;
 import com.example.rad.test.feature.data.Category;
 
 import java.util.List;
@@ -22,11 +20,11 @@ import java.util.List;
 public class MyCategorySingleRecyclerViewAdapter extends RecyclerView.Adapter<MyCategorySingleRecyclerViewAdapter.ViewHolder> {
 
     public final List<Category> articles;
-    private final FilterFragment.OnFragmentInteractionListener listener;
+    private final CategoryFilterFragment.OnFragmentInteractionListener listener;
     private Context context;
 
     public MyCategorySingleRecyclerViewAdapter(List<Category> articles,
-                                               FilterFragment.OnFragmentInteractionListener listener) {
+                                               CategoryFilterFragment.OnFragmentInteractionListener listener) {
         this.articles = articles;
         this.listener = listener;
     }

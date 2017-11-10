@@ -15,10 +15,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.rad.test.feature.R;
-import com.example.rad.test.feature.activity.ArticelsActivity;
+import com.example.rad.test.feature.activity.CategoryActivity;
 import com.example.rad.test.feature.api.ApiClient;
-import com.example.rad.test.feature.data.Articles;
-import com.example.rad.test.feature.data.Articles_size_single;
 import com.example.rad.test.feature.data.Category;
 
 import org.json.JSONArray;
@@ -31,14 +29,14 @@ import java.util.List;
  * Created by Rad on 2017-11-06.
  */
 
-public class FilterFragment extends Fragment {
+public class CategoryFilterFragment extends Fragment {
 
     private OnFragmentInteractionListener listener;
     private MyCategorySingleRecyclerViewAdapter adapter;
     private String newCategory;
     private Boolean top;
-    public static FilterFragment newInstance(String newCategory, Boolean top) {
-        FilterFragment fragment = new FilterFragment();
+    public static CategoryFilterFragment newInstance(String newCategory, Boolean top) {
+        CategoryFilterFragment fragment = new CategoryFilterFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         fragment.newCategory = newCategory;
@@ -65,7 +63,7 @@ public class FilterFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     if (getActivity() != null) {
-                        ((ArticelsActivity)getActivity()).callBackCategory(newCategory);
+                        ((CategoryActivity)getActivity()).callBackCategory(newCategory);
                     }
                 } catch (Exception e) {
                    Log.e("activite Filter", e.getMessage());
@@ -77,7 +75,7 @@ public class FilterFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     if (getActivity() != null) {
-                        ((ArticelsActivity)getActivity()).gotoProducts(newCategory);
+                        ((CategoryActivity)getActivity()).gotoProducts(newCategory);
                     }
                 } catch (Exception e) {
                     Log.e("activite Filter", e.getMessage());

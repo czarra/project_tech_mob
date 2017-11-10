@@ -8,6 +8,7 @@
     <color name="blue_logo">#3B5998</color>
     <color name="dark_blue">#131B4B</color>
     <color name="light_blue">#00B9DA</color>
+    <color name="spinner">#EEEEEE</color>
     <color name="form_font_color">#909090</color>
     <color name="app_background">#1E2830</color>
     <color name="link_color">#8F8F8F</color>

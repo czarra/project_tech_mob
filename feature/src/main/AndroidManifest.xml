@@ -16,13 +16,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.ArticelsActivity"
+            android:name=".activity.CategoryActivity"
             android:label="@string/articles"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             />
         <activity
             android:name=".activity.ArticeleSingleActivity"
+            android:label="@string/articles"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+        <activity
+            android:name=".activity.ArticleFilterActivity"
             android:label="@string/articles"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
