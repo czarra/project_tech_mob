@@ -1,5 +1,7 @@
 package com.example.rad.test.feature.data;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,22 +21,24 @@ public class Category {
         this.key = null;
         this.name = null;
     }
+    public static Category fromJsonObject(JSONObject jsonObject) {
+        try {
+            return new Category(jsonObject.getString("key"), jsonObject.getString("name"));
+        } catch (JSONException exp) {
+            Log.e("category object", exp.getMessage());
+        }
+        return null;
+    }
 
 
-    public Category(String key) {
+    private Category(String key, String name) {
         this.key = key;
-        this.name = this.changeOnName(key) ;
+        this.name = name ;
     }
 
     @Override
     public String toString() {
         return "key=" + key + " name= " + name;
-    }
-
-    private String changeOnName(String key){
-        String name = key.replace("-"," ");
-
-        return name.toUpperCase();
     }
 
 }

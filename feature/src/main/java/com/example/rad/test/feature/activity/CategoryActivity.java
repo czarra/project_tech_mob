@@ -34,7 +34,7 @@ public class CategoryActivity extends AppCompatActivity implements CategoryFilte
         Intent intent = getIntent();
         category = intent.getStringExtra("category");
         Log.e("activity",category);
-        loadCategoryArticle(category, true);
+        loadCategoryArticle(category, true, "Katalog");
 
     }
 
@@ -60,8 +60,8 @@ public class CategoryActivity extends AppCompatActivity implements CategoryFilte
         }
     }
 
-    private void loadCategoryArticle(String id, boolean top){
-        loadFragment(CategoryFilterFragment.newInstance(id, top));
+    private void loadCategoryArticle(String id, boolean top, String name){
+        loadFragment(CategoryFilterFragment.newInstance(id, top, name));
     }
     private void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -71,11 +71,11 @@ public class CategoryActivity extends AppCompatActivity implements CategoryFilte
     @Override
     public void onFragmentInteraction(Category category) {
 
-        loadCategoryArticle(category.key, true);
+        loadCategoryArticle(category.key, true, category.name);
     }
 
-    public void callBackCategory(String key ){
-        loadCategoryArticle(key, false);
+    public void callBackCategory(String key, String name ){
+        loadCategoryArticle(key, false, name);
     }
     public void gotoProducts(String key ){
         Intent mIntent = new Intent(CategoryActivity.this, ArticleFilterActivity.class);

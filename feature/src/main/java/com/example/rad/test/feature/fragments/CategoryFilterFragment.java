@@ -34,13 +34,15 @@ public class CategoryFilterFragment extends Fragment {
     private OnFragmentInteractionListener listener;
     private MyCategorySingleRecyclerViewAdapter adapter;
     private String newCategory;
+    private String newCategoryName;
     private Boolean top;
-    public static CategoryFilterFragment newInstance(String newCategory, Boolean top) {
+    public static CategoryFilterFragment newInstance(String newCategory, Boolean top, String newCategoryName) {
         CategoryFilterFragment fragment = new CategoryFilterFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         fragment.newCategory = newCategory;
         fragment.top = top;
+        fragment.newCategoryName = newCategoryName;
         return fragment;
     }
 
@@ -63,7 +65,7 @@ public class CategoryFilterFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     if (getActivity() != null) {
-                        ((CategoryActivity)getActivity()).callBackCategory(newCategory);
+                        ((CategoryActivity)getActivity()).callBackCategory(newCategory, newCategoryName);
                     }
                 } catch (Exception e) {
                    Log.e("activite Filter", e.getMessage());
@@ -100,7 +102,7 @@ public class CategoryFilterFragment extends Fragment {
                 for (int i = 0; i < list.size(); i++) {
                     adapter.articles.add(list.get(i));
                 }
-                categoryNameGeneral.setText(newCategory.replace("-"," ").toUpperCase());
+                categoryNameGeneral.setText(newCategoryName.replace("-"," ").toUpperCase());
                 adapter.notifyDataSetChanged();
                 progressBar1.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
@@ -163,11 +165,22 @@ public class CategoryFilterFragment extends Fragment {
                     JSONArray category = articlesObject.getJSONArray("childKeys");
                     if(!top) {
                         newCategory = articlesObject.getString("key");
+                        newCategoryName = articlesObject.getString("name");
                     }
                     for (int j = 0; j < category.length(); j++) {
-                        Category item = new Category(category.getString(j));
-                        if (item != null) {
-                            list.add(item);
+                        if(!category.getString(j).isEmpty()) {
+                            String url2 = "https://api.zalando.com/categories?key=" + category.getString(j);
+                            String jsonResponse2 = client.getURL(url2, String.class);
+                            JSONObject jsonObject2 = new JSONObject(jsonResponse2);
+                            JSONArray articles2 = jsonObject2.getJSONArray("content");
+                            for (int k = 0; k < articles2.length(); k++) {
+                                JSONObject articlesObject2 = articles2.getJSONObject(i);
+                                Category item = Category.fromJsonObject(articlesObject2);
+                                if (item != null && !articlesObject2.getString("hidden").equalsIgnoreCase("true")) {
+                                    list.add(item);
+                                }
+                            }
+
                         }
                     }
                 }
