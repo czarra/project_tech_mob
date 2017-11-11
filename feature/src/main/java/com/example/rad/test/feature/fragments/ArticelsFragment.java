@@ -143,8 +143,8 @@ public class ArticelsFragment extends Fragment {
             protected void onPreExecute() {
                 progressBar1.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.GONE);
-                buttonBack.setVisibility(View.GONE);
-                buttonNext.setVisibility(View.GONE);
+                buttonBack.setVisibility(View.INVISIBLE);
+                buttonNext.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -195,14 +195,13 @@ public class ArticelsFragment extends Fragment {
     }
 
     private RetrieveArticlesTask forButtons(){
-
-        return new RetrieveArticlesTask() {
+        RetrieveArticlesTask local =  new RetrieveArticlesTask() {
             @Override
             protected void onPreExecute() {
                 progressBar1.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.GONE);
-                buttonBack.setVisibility(View.GONE);
-                buttonNext.setVisibility(View.GONE);
+                buttonBack.setVisibility(View.INVISIBLE);
+                buttonNext.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -229,6 +228,8 @@ public class ArticelsFragment extends Fragment {
                 }
             }
         };
+
+        return local;
     }
 
 
@@ -287,7 +288,7 @@ public class ArticelsFragment extends Fragment {
             try {
                 Log.d("url",url);
                 String jsonResponse = client.getURL(url, String.class);
-                Log.d("jsonResponse",jsonResponse);
+               // Log.d("jsonResponse",jsonResponse);
                 JSONObject jsonObject = new JSONObject(jsonResponse);
                 JSONArray articles = jsonObject.getJSONArray("content");
                 Log.d("page",  jsonObject.getString("page"));
