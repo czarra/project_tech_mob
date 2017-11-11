@@ -50,14 +50,23 @@ public class CategoryActivity extends AppCompatActivity implements CategoryFilte
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
 
+        int id = item.getItemId();
+
+
+        if (id == R.id.start) {
+            Intent mIntent = new Intent(CategoryActivity.this, MainActivity.class);
+            startActivity(mIntent);
+            finish();
+            return true;
         }
+        if(id == android.R.id.home){
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+
     }
 
     private void loadCategoryArticle(String id, boolean top, String name){
