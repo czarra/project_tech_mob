@@ -11,6 +11,7 @@
     <color name="spinner">#EEEEEE</color>
     <color name="form_font_color">#909090</color>
     <color name="app_background">#1E2830</color>
+    <color name="app_background_start">#DDDDDD</color>
     <color name="link_color">#8F8F8F</color>
     <color name="off_white">#565B5F</color>
 </resources>

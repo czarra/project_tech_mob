@@ -6,4 +6,5 @@
     <string name="start">Powitalna</string>
     <string name="filters">Filtry</string>
     <string name="articles">Produkty</string>
+    <string name="start_text">Aplikacja umożliwia mobilne przeglądanie produktów, oferowanych w sklepie internetowym zalando.pl. Zapraszam do swobodnego korzystania.</string>
 </resources>

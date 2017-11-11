@@ -49,8 +49,8 @@
             android:layout_height="39dp"
             android:layout_alignTop="@+id/price1"
             android:layout_marginStart="19dp"
+            android:focusableInTouchMode="true" android:cursorVisible="false"
             android:layout_toEndOf="@+id/price1"
-
             android:inputType="number"
             android:hint="od" />
 
@@ -60,7 +60,7 @@
             android:layout_height="39dp"
             android:layout_alignTop="@+id/price2"
             android:layout_centerHorizontal="true"
-
+            android:focusableInTouchMode="true" android:cursorVisible="false"
             android:inputType="number"
             android:hint="do" />
 
@@ -90,51 +90,40 @@
             android:gravity="center"
             android:text="Sortuj" />
 
+        <Button
+            android:id="@+id/buttonNext"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/round_red_button"
+            android:padding="5dp"
+            android:text="Następna strona" />
 
+        <Button
+            android:id="@+id/buttonBack"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/round_gr_button"
+            android:padding="5dp"
+            android:text="Poprzednia strona"
+            android:textColor="@color/textColor" />
 
 
     </RelativeLayout>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_alignParentStart="true"
-    android:layout_marginTop="128dp"
-    android:layout_alignParentTop="true">
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
     <android.support.v7.widget.RecyclerView xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-
-
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="128dp"
+        android:layout_marginBottom="40dp"
+        android:layout_alignParentTop="true"
         android:splitMotionEvents="true"
         tools:listitem="@layout/fragment_article" />
-    <Button
-        android:id="@+id/buttonBack"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_below="@+id/list"
-        android:background="@color/form_font_color"
-        android:text="Poprzednia strona"
-        android:layout_margin="15dp"
-        android:padding="5dp"
-        android:textColor="@color/textColor" />
 
-    <Button
-        android:id="@+id/buttonNext"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_below="@+id/list"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="15dp"
-        android:padding="5dp"
-        android:background="@drawable/round_red_button"
-        android:text="Następna strona" />
-    </RelativeLayout>
-</ScrollView>
     <ProgressBar
         android:id="@+id/progressBar1"
         android:layout_width="wrap_content"

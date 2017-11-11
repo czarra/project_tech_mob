@@ -34,6 +34,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -113,6 +114,7 @@ public class SingleArticeleFragment extends Fragment {
                 }catch (Exception e){
                     Log.e("ArticleAdapter", e.getMessage());
                 }
+                Collections.sort(adapterSize.articles);
                 textNameArtcle.setText(article.name );
                 Picasso.with(context)
                         .load(url_picture)

@@ -79,6 +79,7 @@ public class ArticelsFragment extends Fragment {
         layoutManager.setSmoothScrollbarEnabled(true);
         listener = (OnFragmentInteractionListener) context;
         progressBar1 = (ProgressBar) view.findViewById(R.id.progressBar1);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
         Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
@@ -170,6 +171,7 @@ public class ArticelsFragment extends Fragment {
                   page--;
                   retrieveArticleTask = forButtons();
                   retrieveArticleTask.execute();
+                  recyclerView.scrollToPosition(0);
               }
           });
         buttonNext.setOnClickListener(new View.OnClickListener() {
@@ -178,6 +180,7 @@ public class ArticelsFragment extends Fragment {
                 page++;
                 retrieveArticleTask = forButtons();
                 retrieveArticleTask.execute();
+                recyclerView.scrollToPosition(0);
             }
         });
 
@@ -187,10 +190,11 @@ public class ArticelsFragment extends Fragment {
                 page = 1;
                 retrieveArticleTask = forButtons();
                 retrieveArticleTask.execute();
+                recyclerView.scrollToPosition(0);
             }
 
         });
-        recyclerView.setNestedScrollingEnabled(false);
+        //recyclerView.setNestedScrollingEnabled(false);
         return view;
     }
 
@@ -288,7 +292,7 @@ public class ArticelsFragment extends Fragment {
             try {
                 Log.d("url",url);
                 String jsonResponse = client.getURL(url, String.class);
-               // Log.d("jsonResponse",jsonResponse);
+                Log.d("jsonResponse",jsonResponse);
                 JSONObject jsonObject = new JSONObject(jsonResponse);
                 JSONArray articles = jsonObject.getJSONArray("content");
                 Log.d("page",  jsonObject.getString("page"));
@@ -299,6 +303,7 @@ public class ArticelsFragment extends Fragment {
                 for (int i = 0; i < articles.length(); i++) {
                     JSONObject articlesObject = articles.getJSONObject(i);
                     Articles item = Articles.fromJsonObject(articlesObject);
+
                     if(item!=null) {
                         list.add(item);
                     }

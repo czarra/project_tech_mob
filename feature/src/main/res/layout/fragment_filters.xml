@@ -41,7 +41,7 @@
         android:layout_height="35dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/categoryNameGeneral"
-        android:background="@color/form_font_color"
+        android:background="@drawable/round_gr_button"
         android:text="Cofnij"
         android:textColor="@color/textColor" />
 

@@ -1,5 +1,9 @@
 package com.example.rad.test.feature.data;
 
+import android.util.Log;
+
+import com.example.rad.test.feature.R;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,13 +16,19 @@ public class Articles {
 
     public static Articles fromJsonObject(JSONObject jsonObject) {
         try {
+            String logoLargeUrl;
+            try{
+                logoLargeUrl = jsonObject.getJSONObject( "brand").getString("logoLargeUrl");
+            }  catch (JSONException exp) {
+                logoLargeUrl ="";
+            }
             return new Articles(jsonObject.getString("id"), jsonObject.getString("name"),
                     jsonObject.getString("shopUrl"), jsonObject.getJSONObject("media").getJSONArray("images"),
                     jsonObject.getString("color"), jsonObject.getString("season"),
-                    jsonObject.getString("seasonYear"),  jsonObject.getJSONObject( "brand").getString("logoLargeUrl"),
+                    jsonObject.getString("seasonYear"), logoLargeUrl ,
                     jsonObject.getJSONArray("units"));
         } catch (JSONException exp) {
-
+            Log.e("article class", exp.getMessage());
         }
         return null;
     }
@@ -46,6 +56,9 @@ public class Articles {
         this.color = color;
         this.season = season;
         this.seasonYear = seasonYear;
+        if(logo.isEmpty()){
+            logo = "https://www.smartdroid.de/wp-content/uploads/2017/07/zalando-logo.jpg";
+        }
         this.logo = logo;
         this.units = units;
     }

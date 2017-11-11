@@ -14,7 +14,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:textSize="6pt"
-        android:background="@color/form_font_color"
+        android:background="@drawable/round_gr_button"
         android:textColor="@color/textColor"
         android:text="X" />
 </RelativeLayout>

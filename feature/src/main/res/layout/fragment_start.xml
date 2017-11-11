@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@color/app_background_start">
 
 
     <TextView
@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="117dp"
-        android:text="STRONA STARTOWA"
+        android:layout_marginTop="121dp"
+        android:text="WITAM!"
         android:textColor="@color/dark_blue"
         android:textSize="15pt" />
 
@@ -22,10 +22,10 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="132dp"
-        android:textSize="12pt"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="@string/start_text"
         android:textColor="@color/dark_blue"
-        android:text="Proszę korzystać do woli" />
+        android:textSize="12pt" />
 </RelativeLayout>
