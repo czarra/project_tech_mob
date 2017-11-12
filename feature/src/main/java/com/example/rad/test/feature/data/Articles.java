@@ -26,7 +26,7 @@ public class Articles {
                     jsonObject.getString("shopUrl"), jsonObject.getJSONObject("media").getJSONArray("images"),
                     jsonObject.getString("color"), jsonObject.getString("season"),
                     jsonObject.getString("seasonYear"), logoLargeUrl ,
-                    jsonObject.getJSONArray("units"));
+                    jsonObject.getJSONArray("units"), jsonObject.getString("available"));
         } catch (JSONException exp) {
             Log.e("article class", exp.getMessage());
         }
@@ -42,13 +42,14 @@ public class Articles {
     public final String seasonYear;
     public final String logo;
     public final JSONArray  units;
+    public final String available;
 
     public Articles() {
-        this(null,null,null,null,null,null,null,null,null);
+        this(null,null,null,null,null,null,null,null,null, null);
     }
 
 
-    private Articles(String id, String name, String shopUrl, JSONArray url, String color, String season, String seasonYear, String logo,  JSONArray units ) {
+    private Articles(String id, String name, String shopUrl, JSONArray url, String color, String season, String seasonYear, String logo,  JSONArray units, String available ) {
         this.id = id;
         this.name = name;
         this.shopUrl = shopUrl;
@@ -61,6 +62,7 @@ public class Articles {
         }
         this.logo = logo;
         this.units = units;
+        this.available = available;
     }
 
     @Override

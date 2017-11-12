@@ -70,13 +70,11 @@ public class MyArticlesRecyclerViewAdapter extends RecyclerView.Adapter<MyArticl
                 if (null != listener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    Log.e("list22", articles.get(position).toString());
                     listener.onFragmentInteraction(articles.get(position));
                 }
             }
         });
-        //Log.e("color", ""+articles.get(position).color);
-       // holder.viewImage.setImageURI(url_picture);
+
     }
 
     @Override
@@ -89,7 +87,6 @@ public class MyArticlesRecyclerViewAdapter extends RecyclerView.Adapter<MyArticl
         public final View view;
         final TextView viewName;
         final ImageView viewImage;
-        //final TextView realcolor;
         public Articles articles;
         final ImageView viewImageBrand;
 
@@ -100,7 +97,6 @@ public class MyArticlesRecyclerViewAdapter extends RecyclerView.Adapter<MyArticl
             viewImage = (ImageView) view.findViewById(R.id.imageView2);
             viewImageBrand = (ImageView) view.findViewById(R.id.imagebrand);
 
-           // realcolor = (TextView) view.findViewById(R.id.realcolor);
         }
     }
 }

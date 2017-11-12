@@ -44,9 +44,7 @@ public class MyCategorySingleRecyclerViewAdapter extends RecyclerView.Adapter<My
         holder.text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("before","kkkk");
                 if (null != listener) {
-                    Log.e("after","kkkk");
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
                     listener.onFragmentInteraction(articles.get(position));

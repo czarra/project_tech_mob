@@ -92,19 +92,19 @@ public class ArticelsFragment extends Fragment {
                                       int position, long id) {
                Log.e("position", position+"  aa");
                switch (position) {
-                   case 1:
+                   case 0:
                        selectedSpinner = "";
                        break;
-                   case 2:
+                   case 1:
                        selectedSpinner = "popularity";
+                       break;
+                   case 2:
+                       selectedSpinner = "priceasc";
                        break;
                    case 3:
                        selectedSpinner = "pricedesc";
                        break;
                    case 4:
-                       selectedSpinner = "priceasc";
-                       break;
-                   case 5:
                        selectedSpinner = "Wyprzedaż";
                        break;
 
@@ -300,11 +300,12 @@ public class ArticelsFragment extends Fragment {
                 Log.d("size",  jsonObject.getString("size"));
                 totalPages =  stringToInt(jsonObject.getString("totalPages"));
                 Log.d("totalPages",  jsonObject.getString("totalPages"));
+
                 for (int i = 0; i < articles.length(); i++) {
                     JSONObject articlesObject = articles.getJSONObject(i);
                     Articles item = Articles.fromJsonObject(articlesObject);
 
-                    if(item!=null) {
+                    if(item!=null && item.available.equalsIgnoreCase("true")) {
                         list.add(item);
                     }
                 }

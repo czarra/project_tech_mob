@@ -42,21 +42,22 @@ public class MyArticlesSingleSizeRecyclerViewAdapter extends RecyclerView.Adapte
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
+        if(articles.get(position) !=null) {
+            holder.textButton.setText(articles.get(position).size);
 
-        holder.textButton.setText(articles.get(position).size);
+            holder.textButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    articles.get(position).text.setText(articles.get(position).price + "   Rozmiar:" + articles.get(position).size);
+                    if (null != listener) {
 
-        holder.textButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                articles.get(position).text.setText(articles.get(position).price + "   Rozmiar:"+articles.get(position).size);
-                if (null != listener) {
-
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                   // listener.onFragmentInteraction(articles.get(position));
+                        // Notify the active callbacks interface (the activity, if the
+                        // fragment is attached to one) that an item has been selected.
+                        // listener.onFragmentInteraction(articles.get(position));
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     @Override
